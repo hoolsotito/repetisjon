@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="no">
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+
+    </head>
+    <body>
+        <div>
+            <form id = "registrering">
+                <div>
+                    <div>
+                        <h1>Registrer Oppdrag</h1>
+                    </div> 
+    
+                    <div>
+                        <label for="">Dato:</label>
+                        <input type="date" name="" id="dato"><br><br>
+                    </div>
+                
+                    <div>
+                        <label for="">Navn:</label>
+                        <input type="text" name="" id="navn"><br><br>
+                    </div>
+    
+                    <div>
+                        <label for="">Produkt:</label>
+                        <input type="text" id="inpProdukt" list="produkt" placeholder="Velg produkt">
+                        <datalist id="produkt">
+                            <option id="PC" value="PC"></option>
+                            <option id="Mac" value="Mac"></option>
+                            <option id="Nettbrett" value="Nettbrett"></option>
+                        </datalist><br><br>
+                    </div>
+    
+                    <div>
+                        <label for="feil">Skildring av feil:</label>
+                        <input type="text" id="feil"><br><br>
+                    </div>
+    
+                    <div>
+                        <button>Registrer</button>
+                        <button type="button" onclick="history.go(0);">Tøm skjerma</button>
+                        <button type="button" onclick="removeLastChild()">Slett siste oppdrag</button>
+                    </div>
+    
+    
+                    <div>
+                        <h2>Oppdragsliste</h2>
+                    </div>
+                    <div>
+                        <div id="oppd"></div>
+                    </div>
+    
+    
+    
+
+            </form>
+        </div>
+               </div>
+        <script>
+
+            function removeLastChild() {
+                let infoElem = document.getElementById("oppd");
+                infoElem.removeChild( infoElem.lastChild);
+            }
+            registrering.onsubmit = function(evt) {
+                var dato = document.getElementById("dato");
+                var navn = document.getElementById("navn");
+                var inpProdukt = document.getElementById("inpProdukt");
+                var produkt =document.getElementById("produkt");
+                var feil = document.getElementById("feil");
+
+
+                let registrertInfo = [dato.value, navn.value, inpProdukt.value, feil.value];
+                
+                let infoElem = document.getElementById("oppd");
+                let infoChild = document.createElement("div");
+                infoChild.innerHTML = "Dato: " + registrertInfo[0] + "<br>Navn: " + registrertInfo[1] + "<br>Produkt: " + registrertInfo[2] + "<br>Skildring av feil  av" + registrertInfo[3] + "<br><br>";
+                infoElem.appendChild(infoChild);
+
+                evt.preventDefault();
+            }
+
+        </script>
+    </body>
+</html
